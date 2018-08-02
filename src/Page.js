@@ -4,9 +4,6 @@ class Page extends Component {
 
 
     render() {
-
-        console.log(this.props);
-        
         return (
             <div className="page">
                 <header className="header">
@@ -18,6 +15,7 @@ class Page extends Component {
                 </header>
                 <div className="body-content">
                     {this.props.bodyContent}
+                    {console.log(this.props.bodyContent)}
                 </div>  
             </div>
         )
