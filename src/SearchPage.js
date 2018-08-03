@@ -2,43 +2,54 @@ import React, { Component } from 'react'
 import Page from './Page'
 import SearchPageHeader from './SearchPageHeader'
 import Shelf from './Shelf'
-import escapeRegExp from 'escape-string-regexp'
 import * as BooksAPI from './utils/BooksAPI'
 
 class SearchPage extends Component {
 
     state = {
-        query: ''
-    }
-    
-    searchFilter(book) {
-        let searchFilter = [book.title, book.subtitle]
-        book.authors.forEach((author) => searchFilter.push(author))
-        if(book.categories){
-            book.categories.forEach((category) => searchFilter.push(category)) 
-        }
-        console.log(searchFilter.join('|'));
-        
-        return searchFilter.join('|')
+        query: '',
+        showingBooks: []
     }
 
+    // Used to update query based on input
     updateQuery = (query) => {
-       this.setState({query: query}) 
+       this.setState({query: query})
+       this.getSearchedBooks(query)
     }
 
-    componentDidMount() {
-        //console.log(this.props.books);
+    // Used to combine books and update showingBooks when props have changed 
+    componentWillReceiveProps(nextProps) {
+        this.combineBooks(this.state.showingBooks, nextProps.books)
+    }
+
+    // Fetch books based on @query and combined them with the logged 
+    // books from the home page
+    getSearchedBooks(query) {
+        if(query) {
+            BooksAPI.search(query).then((books) => {
+                if(books.hasOwnProperty('error')){
+                    this.setState({showingBooks: []})
+                } else {
+                    this.combineBooks(books, this.props.books)
+                    this.setState({showingBooks: books})
+                }
+            })
+        } else {
+            this.setState({showingBooks: []}) 
+        }
     } 
 
-    render() {
-        let showingBooks 
-        if(this.state.query) {
-            const match = new RegExp(escapeRegExp(this.state.query), 'i')
-            showingBooks = this.props.books.filter((book) => 
-                match.test('/^(' + this.searchFilter(book) +')$/'))
-        } else {
-            showingBooks = this.props.books;
-        }
+    // Combine combine fetched books and propsBooks
+    combineBooks(fetchedBooks, propsBooks) {
+        fetchedBooks.forEach((book, index) => {
+            let currentBook = propsBooks.find((b) => b.id === book.id);
+            book.shelf = currentBook ? currentBook.shelf : 'none';
+            fetchedBooks[index] = book;
+        })
+        this.setState({showingBooks: fetchedBooks})
+    }
+
+    render() { 
         return (
             <Page 
                 headerContent={
@@ -48,7 +59,7 @@ class SearchPage extends Component {
                     />}
                 bodyContent={
                     <Shelf title="Results"
-                        books={showingBooks}
+                        books={this.state.showingBooks}
                         updateBookShelf={this.props.updateBookShelf}
                     />}
             />
