@@ -10,15 +10,27 @@ class App extends Component {
 
   state = { books: [] }
   
+  // Update @this.state.books when book changed shelf
   updateBookShelf = (book, shelf) => {
-    BooksAPI.update(book, shelf).then(this.componentDidMount())
+    BooksAPI.update(book, shelf).then(() => this.getAllBooks())
   }
 
+  // Get all logged books from BooksAPI
+  getAllBooks() {
+    this.fetchBooks()
+  }
+
+  // Fetch books after rendering
   componentDidMount() {
+    this.fetchBooks()
+  }    
+  
+  // Fetch all logged books from BooksAPI
+  fetchBooks() {
     BooksAPI.getAll().then((books) => {
       this.setState({books: books})
     })
-  }         
+  }
 
   render() {
     return (
@@ -41,17 +53,4 @@ class App extends Component {
   }
 }
 
-export default App;
-
-
-{
-  /* <Route exact path="/" render={() => (
-            <FrontPage searchPage={SearchPage}/>
-          )}/> */
-}
-
-{
-  /* <Route exact path="/search" render={({history}) => (
-            <SearchPage />
-          )}/> */
-}
+export default App
