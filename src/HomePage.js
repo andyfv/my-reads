@@ -11,18 +11,13 @@ class HomePage extends Component {
         ['read', 'Read']
     ]
 
-
-    componentDidMount() {
-        console.log(this.props.books);
-    } 
-    
-
     render() {
         return (
             <Page 
             headerContent={<HomePageHeader />}
             bodyContent={this.shelves.map(([key, value]) => (
                 <Shelf
+                    key={key}
                     title={value}
                     books={this.props.books.filter((book) => book.shelf === key)}
                     updateBookShelf={this.props.updateBookShelf}

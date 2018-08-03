@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import ProptType from 'prop-types'
 
 class Book extends Component {
 

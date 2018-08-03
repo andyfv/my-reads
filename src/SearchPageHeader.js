@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import escapeRegExp from 'escape-string-regexp'
-import sortBy from 'sort-by'
 
 class SearchPageHeader extends Component {
 
@@ -23,7 +21,8 @@ class SearchPageHeader extends Component {
                             type="text" 
                             placeholder="Search Books"
                             value={this.props.query}
-                            onChange={(event) => this.props.updateQuery(event.target.value)}/>
+                            onChange={(event) => 
+                            this.props.updateQuery(event.target.value)}/>
                     </div>
                 </li>
             </React.Fragment>

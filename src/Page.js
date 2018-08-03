@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
 class Page extends Component {
-
-
     render() {
         return (
             <div className="page">
@@ -15,7 +13,6 @@ class Page extends Component {
                 </header>
                 <div className="body-content">
                     {this.props.bodyContent}
-                    {console.log(this.props.bodyContent)}
                 </div>  
             </div>
         )

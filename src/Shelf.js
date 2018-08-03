@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Panel, Collapse } from 'react-bootstrap'
 import Book from './Book'
 
 class Shelf extends Component {
@@ -14,6 +13,7 @@ class Shelf extends Component {
                     <ol className="books-grid">
                         {this.props.books.map((book) => (
                             <Book 
+                            key={book.id}
                             book={book}
                             updateBookShelf={this.props.updateBookShelf}
                             />
