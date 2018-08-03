@@ -9,7 +9,7 @@
 
 ## About
 
-The **MyReads** project is bookshelf app written with React. You can categorize books you have read, are currently reading, or want to read. The project emphasizes using React to build the application and provides an API server and client library that you will use to persist information as you interact with the application.
+The **MyReads** project is bookshelf app written with React. You can categorize books you have read, currently reading, or want to read. The project emphasizes using React to build the application and provides backend API server and client library that you can use to persist information as you interact with the application.
 
 ## How to run it
 
