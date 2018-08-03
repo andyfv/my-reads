@@ -23,7 +23,7 @@ The **MyReads** project is bookshelf app written with React. You can categorize 
 
         npm start
 
-5) This will open new browser window/tab. If it doesn't navigate to 
+5) This will open new browser window/tab. If it doesn't navigate to
 
         http://localhost:3000/
 
@@ -46,7 +46,6 @@ On the Search Page you can add new books by enter an author's name or subject in
 *Note: The backend API is limited to a fixed set of [Search Terms](#important)  -- see below for valid search options*
 
 ![Search Page](src/screenshots/SearchPage.jpg)
-
 
 ## Important
 
