@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import * as BooksAPI from './utils/BooksAPI'
-import PropTypes from 'prop-types'
 import SearchPage from './SearchPage'
 import HomePage from './HomePage'
 import 'normalize.css'
